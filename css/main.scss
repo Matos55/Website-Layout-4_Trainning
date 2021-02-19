@@ -1,0 +1,297 @@
+// Mobile first
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&display=swap');
+
+
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0; // ha sempre uma margin pre-definida, usamos margem zero para reset
+    background: #2B192F;
+    color: white;
+    font-family: 'Montserrat';
+}
+
+// nav links props
+a{
+    color: white;
+    text-decoration: none;
+}
+
+// ul's props
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/******<!-- Pink Box -->******/
+
+// background for "Pink Box"
+.hero-wrapper{
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/bg_copy_copy.jpg');
+    background-size: cover;
+}
+
+// Responsible for the margins on desktop vs mobile (mobile alwways first)
+.wrapper{
+    padding: 1.5em;
+    max-width: 1200px; // after the screen goes beyond 1200px, the wrapper will stay frozen and do not extend beyond the added px's.
+    margin: 0 auto;
+}
+
+// it´s the "logo" and the "nav bar"
+header{
+    display: flex;
+    justify-content: space-between;
+
+    .logo{
+        font-weight: bold;
+    }
+
+    ul{
+        display: flex;
+
+        // meter padding à esquerda e à direita da "nav bar"
+        li a{
+            padding: 0 .6em;
+        }
+    }
+}
+
+// props nesta sub-section
+.hero-content{
+    margin: 4em 0 2em;
+
+    .subtitle{
+        margin-bottom: 0; // to get rid of any default margin/padding
+    }
+}
+
+/******<!-- Second Box -->******/
+
+.light-purple-wrapper{
+    background: #351F3A; // less pinky
+}
+
+// stats sub
+.stats{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    justify-content: space-around;
+    margin-top: 2em;
+
+    li{
+        margin-bottom: 1.5em;
+    }
+
+    // numbers
+    strong{
+        font-size: 1.4em;
+    }
+
+    // text
+    span{
+        display: block;
+        text-transform: uppercase;
+        font-size: .75em;
+    }
+}
+
+
+/******<!-- Second Box_carousel -->******/
+
+.arrows{
+    display: none;
+}
+
+.extended-wrapper{
+    padding: 0 1.5em 2em;
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+ul.carousal{
+    margin-bottom: 1em;
+
+    li{
+        background: #422847;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+// remove default margin of blockquote + props
+blockquote{
+    margin: 0; 
+    font-size: .8em;
+    line-height: 1.8em;
+    margin-bottom: 1em;
+}
+
+// props
+cite{
+    color: #e379ff;
+    font-weight: bold;
+    font-size: .8em;
+    font-style: normal;
+    position: relative; // for the sub-positions to be "relative" to this section
+    padding-left: 25px;
+}
+
+cite::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    height: 1px;
+    width: 20px;
+    border-bottom: 1px solid white;
+}
+
+
+/******<!-- Third Box -->******/
+
+h2{
+    text-align: center;
+    position: relative;
+}
+
+// pink risco
+h2::before{
+    content: '';
+    position: absolute;
+    top: -.3em;
+    height: 5px;
+    width: 30px;
+    background: #B728DC; 
+}
+
+.companies{
+    text-align: center;
+    opacity: .4;
+
+    li{
+        margin: 2em 0;
+    }
+
+    .skillshare{
+        width: 100px;
+    }
+
+    .ps{
+        width: 200px;
+    }
+}
+
+/****** MEDIA QUERIES ******/
+
+@media (min-width: 500px){
+
+    //logo to auto columns
+    .companies{
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media (min-width: 650px){
+    body{
+        font-size: 18px; // default of em/rem is 16px
+    }
+
+    .wrapper{
+        padding: 1.5em 4em;
+    }
+
+    // for arrows to be in both sides
+    .carousal-container{
+        display: flex; 
+    }
+
+    // arrows to appear
+    .arrows{
+        display: block;
+        width: 40px;
+        cursor: pointer;
+        margin: .5em;
+    }
+    .right{
+        transform: rotateZ(180deg); // rodar a seta da esquerda para a direita
+    }
+    ul.carousal{
+        display: flex;
+        margin-bottom: 0;
+
+        li{
+            margin-right: 1em; // it also adds to the end, so we need to fix that last testimonial
+            margin-bottom: 0;
+            padding: 2em;
+
+            // to fix the margin
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+
+    .companies{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 853px){
+    body{
+        font-size: 20px;
+    }
+
+    .stats{
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .companies{
+        grid-template-columns: repeat(4, auto);
+    }
+    h1{
+        font-size: 2.5em;
+    }
+    .subtitle{
+        font-size: 1.2em;
+    }
+    h2{
+        text-align: left;
+        font-size: 2em;
+    }
+    .v-padding{
+        padding: 4em;
+    }
+
+    // dar espaço no padding
+    .light-purple-wrapper{
+        padding-bottom: 4em;
+    }
+
+    // para remover margem nesta secao para sobrepor a box de cima
+    .move-up{
+        margin-top: -7em;
+    }
+}
+
+
+// para criar os risquinhos a separar as stats
+@media (min-width: 1200px){
+    .stats li{
+        border-right: 1px solid rgb(124, 89, 148);
+        padding-right: 5%;
+
+        &:last-child{
+            border: 0;
+        }
+    }
+}
